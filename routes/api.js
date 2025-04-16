@@ -6,15 +6,13 @@ const ipLikeMap = new Map();
 module.exports = function (app) {
     app.route("/api/stock-prices").get(async function (req, res) {
         try {
-            console.log(ipLikeMap);
             const stock = req.query.stock;
-            const like = req.query.like;
-            console.log(like);
-            console.log(typeof like);
+            const like = req.query.like || "false";
 
             // 获取IP并检测是否重复
             const ip = req.ip;
             const key = `${ip}:${stock}`;
+            console.log(stock);
 
             if ((like === "true") & ipLikeMap.has(key)) {
                 return res.status(400).json({ error: "You have already liked this stock" }); // 修复 Test 3
