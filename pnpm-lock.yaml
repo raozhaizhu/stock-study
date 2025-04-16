@@ -14,12 +14,6 @@ importers:
       body-parser:
         specifier: ^1.15.2
         version: 1.20.3
-      chai:
-        specifier: ^4.2.0
-        version: 4.5.0
-      chai-http:
-        specifier: ^4.3.0
-        version: 4.4.0
       cors:
         specifier: ^2.8.1
         version: 2.8.5
@@ -30,10 +24,17 @@ importers:
         specifier: ^4.14.0
         version: 4.21.2
       helmet:
-        specifier: ^3.1.0
+        specifier: ^3.23.3
         version: 3.23.3
+    devDependencies:
+      chai:
+        specifier: ^4.5.0
+        version: 4.5.0
+      chai-http:
+        specifier: ^4.4.0
+        version: 4.4.0
       mocha:
-        specifier: ^3.2.0
+        specifier: ^3.5.3
         version: 3.5.3
 
 packages:

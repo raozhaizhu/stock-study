@@ -1,13 +1,29 @@
 "use strict";
 
 const axios = require("axios"); // 引入 axios 库
+const ipLikeMap = new Map();
 
 module.exports = function (app) {
     app.route("/api/stock-prices").get(async function (req, res) {
         try {
-            console.log(req.query);
+            console.log(ipLikeMap);
             const stock = req.query.stock;
-            const like = req.query.like || false;
+            const like = req.query.like;
+            console.log(like);
+            console.log(typeof like);
+
+            // 获取IP并检测是否重复
+            const ip = req.ip;
+            const key = `${ip}:${stock}`;
+
+            if ((like === "true") & ipLikeMap.has(key)) {
+                return res.status(400).json({ error: "You have already liked this stock" }); // 修复 Test 3
+            }
+            if (like === "true") {
+                ipLikeMap.set(key, true);
+            }
+
+            // stock相关检测，存在与否，是字符串还是数组
             if (!stock) {
                 return res.status(400).json({ error: "Stock symbol is required" });
             }
